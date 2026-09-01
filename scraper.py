@@ -1,13 +1,14 @@
 import os
 import csv
 from datetime import datetime
-from config import OUTPUT_DIR
 
-# معرفات الأخطاء والدوال القديمة لكي يتوافق مع bot.py تماماً
-class ScraperError(Exception):
-    pass
-
+# تعريف المتغيرات مباشرة داخل الملف لتجنب أي أخطاء استيراد
 SEARCH_QUERY = "Digital Marketing"
+OUTPUT_DIR = "output"
+
+class ScraperError(Exception):
+    """مخصص لأخطاء عملية السحب"""
+    pass
 
 def scrape_leads():
     """
@@ -37,7 +38,7 @@ def scrape_leads():
 
 def export_to_csv(data):
     """
-    دالة التصدير المتوافقة مع bot.py لتصدير النتائج إلى ملف CSV
+    تصدير النتائج إلى ملف CSV بشكل منظم
     """
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
