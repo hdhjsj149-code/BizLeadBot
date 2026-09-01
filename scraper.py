@@ -1,10 +1,10 @@
 import os
 import csv
 from datetime import datetime
+from config import OUTPUT_DIR, REQUEST_TIMEOUT
 
-# تعريف المتغيرات مباشرة داخل الملف لتجنب أي أخطاء استيراد
+# تعريف متغير البحث الافتراضي
 SEARCH_QUERY = "Digital Marketing"
-OUTPUT_DIR = "output"
 
 class ScraperError(Exception):
     """مخصص لأخطاء عملية السحب"""
@@ -12,9 +12,9 @@ class ScraperError(Exception):
 
 def scrape_leads():
     """
-    مُستخرج البيانات الرئيسي لـ BizLeadBot
+    مُستخرج البيانات الرئيسي لـ BizLeadBot مع الاعتماد على إعدادات المشروع
     """
-    print(f"[*] بدء عملية البحث والسحب عن: {SEARCH_QUERY}")
+    print(f"[*] بدء عملية البحث والسحب بمهلة طلبات: {REQUEST_TIMEOUT} ثانية")
     
     leads_data = [
         {
@@ -38,7 +38,7 @@ def scrape_leads():
 
 def export_to_csv(data):
     """
-    تصدير النتائج إلى ملف CSV بشكل منظم
+    تصدير النتائج إلى ملف CSV بالاعتماد على مسار المخرجات من config
     """
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
