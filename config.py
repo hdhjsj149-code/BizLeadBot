@@ -70,3 +70,7 @@ def validate_config() -> None:
         for err in errors:
             print(f"  - {err}")
         sys.exit(1)
+
+
+SEARCH_QUERY = "Digital Marketing"
+OUTPUT_DIR = "output"
